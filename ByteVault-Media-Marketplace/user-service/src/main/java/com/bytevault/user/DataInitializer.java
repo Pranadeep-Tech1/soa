@@ -1,0 +1,3 @@
+package com.bytevault.user;
+import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+@Configuration public class DataInitializer { @Bean CommandLineRunner seed(UserRepository repo){ return args->{ if(repo.count()==0){ BCryptPasswordEncoder e=new BCryptPasswordEncoder(); User admin=new User();admin.setUsername("admin");admin.setPasswordHash(e.encode("admin123"));admin.setRole("ADMIN");repo.save(admin); User demo=new User();demo.setUsername("student");demo.setPasswordHash(e.encode("student123"));demo.setRole("USER");repo.save(demo); } }; } }

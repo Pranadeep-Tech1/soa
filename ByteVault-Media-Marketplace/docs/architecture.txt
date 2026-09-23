@@ -1,0 +1,11 @@
+BROWSER
+   |
+   v
+API GATEWAY :8080 --------> Eureka :8761
+   |                         ^
+   +---- USER-SERVICE :8081 -+
+   +---- PRODUCT-SERVICE :8082
+   +---- ORDER-SERVICE :8083 ----WebClient----> PRODUCT-SERVICE
+
+JWT: User Service issues -> Gateway validates -> Product/Order validate again
+Download: Order Service -> 15-minute HMAC signed URL -> generated digital asset
